@@ -2353,6 +2353,9 @@ select:focus-visible {
 
 #chat-page .input-field {
     border-radius: 12px;
+    padding: 10px 12px;
+    line-height: 1.35;
+    min-height: 44px;
     padding-right: 14px;
 }
 
@@ -2372,18 +2375,21 @@ select:focus-visible {
         padding: 3px 8px;
     }
 
-    #chat-page .chat-action {
-        min-width: auto;
-        padding: 6px 9px;
-        font-size: 0.74rem;
+    #chat-page .send-btn {
+    min-width: 72px;
+    padding: 0 0.75rem;
     }
 
     .chat-suggestions {
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        padding-bottom: 3px;
-    }
-
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.chat-suggestions::-webkit-scrollbar {
+    display: none;
+}
     .suggestion-chip {
         white-space: nowrap;
     }
