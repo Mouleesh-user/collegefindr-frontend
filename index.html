@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollegeFindr - AI-Powered College Search</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="page-content">
+    <!-- LANDING PAGE -->
+        <div id="landing-page" class="page">
+            <div class="container">
+                <nav class="navbar">
+                    <a href="#" class="logo">CollegeFindr</a>
+                    <div class="nav-links">
+                        <a href="#features" class="nav-link" onclick="smoothScrollToSection('features'); return false;">Features</a>
+                        <a href="#about" class="nav-link" onclick="smoothScrollToSection('about'); return false;">About</a>
+                        <a href="#pricing" class="nav-link" onclick="smoothScrollToSection('pricing'); return false;">Pricing</a>
+                        <a href="#contact" class="nav-link" onclick="smoothScrollToSection('contact'); return false;">Contact</a>
+                    </div>
+                    <div class="auth-links">
+                        <a href="#" class="btn btn-outline" onclick="showPage('login-page')">Login</a>
+                        <a href="#" class="btn btn-primary" onclick="showPage('login-page')">Sign Up</a>
+                    </div>
+                </nav>
+            </div>
+            
+            <div class="container">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Find Your Perfect College Match with AI</h1>
+                        <p class="hero-text">
+                            CollegeFindr uses AI to help you discover colleges that match your academic goals, budget, and personal preferences. Chat with our AI to get personalized college recommendations instantly.
+                        </p>
+                        <button type="button" onclick="showPage('login-page')" class="cool-button">Get Started Free</button>
+                    </div>
+                    <div class="hero-image">
+                        <img src="./camimg.webp" height="300" width="500" alt="College Search Illustration" />
+                    </div>
+                </div>
+            </div>
+            
+            <div id="features" class="features">
+                <div class="container">
+                    <h2 class="section-title">Why Choose CollegeFindr?</h2>
+                    <div class="feature-cards">
+                        <div class="feature-card">
+                            <div class="feature-icon">🔍</div>
+                            <h3 class="feature-title">Personalized Matching</h3>
+                            <p class="feature-text">
+                                Tell our AI about your preferences, budget, major interests, and location needs to get tailored college recommendations.
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💰</div>
+                            <h3 class="feature-title">Financial Aid Assistance</h3>
+                            <p class="feature-text">
+                                Discover scholarships, grants, and financial aid opportunities for each college recommendation.
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <h3 class="feature-title">Comprehensive Data</h3>
+                            <p class="feature-text">
+                                Access detailed information on admission rates, campus life, majors, and career outcomes for thousands of colleges.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+<!-- ABOUT SECTION -->
+<div id="about" class="about">
+    <div class="container">
+        <h2 class="section-title">About CollegeFindr</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    CollegeFindr is an AI-powered platform designed to help students find the perfect college match based on their unique preferences, academic goals, and personal needs. Our advanced AI technology analyzes thousands of colleges to provide personalized recommendations, ensuring that you find the best fit for your future.
+                </p>
+                <p>
+                    Whether you're looking for a college with a strong engineering program, a vibrant campus life, or generous financial aid options, CollegeFindr has you covered. Our mission is to make the college search process easier, more efficient, and more enjoyable for students everywhere.
+                </p>
+                <p>
+                    Join thousands of students who have successfully found their ideal college with CollegeFindr. Start your journey today and discover the possibilities!
+                </p>
+            </div>
+            <div class="about-image">
+                <img src="./clglogo.PNG" alt="About CollegeFindr" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PRICING SECTION -->
+<div id="pricing" class="pricing">
+    <div class="container">
+        <h2 class="section-title">Our Pricing Plans</h2>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <h3 class="pricing-title">Basic</h3>
+                <p class="pricing-price">$0/month</p>
+                <p class="pricing-text">Access to basic college search features and recommendations.</p>
+                <a href="#" class="btn btn-outline">Get Started</a>
+            </div>
+            <div class="pricing-card">
+                <h3 class="pricing-title">Pro</h3>
+                <p class="pricing-price">$19.99/month</p>
+                <p class="pricing-text">Includes personalized recommendations, financial aid assistance, and more.</p>
+                <a href="#" class="btn btn-primary">Upgrade Now</a>
+            </div>
+            <div class="pricing-card">
+                <h3 class="pricing-title">Premium</h3>
+                <p class="pricing-price">$49.99/month</p>
+                <p class="pricing-text">All Pro features plus one-on-one consultations with college advisors.</p>
+                <a href="#" class="btn btn-outline">Get Premium</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACT SECTION -->
+<div id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3 class="contact-title">Get in Touch</h3>
+                <p class="contact-text">Have questions or need assistance? Reach out to us!</p>
+                <div class="contact-details">
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email:</span> support@collegefindr.com
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <span>Phone:</span> +1 (123) 456-7890
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Address:</span> 123 College St, Education City, USA
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3 class="contact-title">Send Us a Message</h3>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" class="form-input" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email" class="form-label">Email</label>
+                        <input type="email" id="contact-email" class="form-input" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" class="form-input" placeholder="Enter your message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+            
+
+
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-col">
+                            <h3 class="footer-title">CollegeFindr</h3>
+                            <p>Your AI-powered guide to finding the perfect college match based on your unique needs and goals.</p>
+                        </div>
+                        <div class="footer-col">
+                            <h3 class="footer-title">Quick Links</h3>
+                            <ul class="footer-links">
+                                <li class="footer-link"><a href="#">Home</a></li>
+                                <li class="footer-link"><a href="#">Features</a></li>
+                                <li class="footer-link"><a href="#">Pricing</a></li>
+                                <li class="footer-link"><a href="#">Blog</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h3 class="footer-title">Support</h3>
+                            <ul class="footer-links">
+                                <li class="footer-link"><a href="#">Help Center</a></li>
+                                <li class="footer-link"><a href="#">Contact Us</a></li>
+                                <li class="footer-link"><a href="#">FAQ</a></li>
+                                <li class="footer-link"><a href="#">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="copyright">
+                        &copy; 2025 CollegeFindr. All rights reserved.
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- LOGIN PAGE -->
+        <div id="login-page" class="page" style="display: none;">
+            <div class="container">
+                <nav class="navbar">
+                    <a href="#" class="logo">CollegeFindr</a>
+                    <a href="#" class="btn btn-outline" onclick="showPage('landing-page')">Back to Home</a>
+                </nav>
+            </div>
+            
+            <div class="container">
+                <div class="auth-container">
+                    <h2 class="auth-title">Login to CollegeFindr</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="auth-full-name" class="form-label">Full Name (for signup)</label>
+                            <input type="text" id="auth-full-name" class="form-input" placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Login</button>
+                    </form>
+                    <button type="button" id="register-btn" class="btn btn-outline btn-full auth-register-btn">Create Account</button>
+                    <div class="auth-footer">
+                        <p>Use "Create Account" to register with email and password, then continue to chat.</p>
+                        <p><a href="#" class="auth-link">Forgot password?</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAT PAGE -->
+        <div id="chat-page" class="page" style="display: none;">
+            <div class="chat-container">
+                <div class="chat-sidebar-overlay" id="sidebar-overlay" onclick="toggleMobileSidebar()"></div>
+                <div class="chat-sidebar" id="chat-sidebar">
+                    <div class="sidebar-header">
+                        <div class="user-info">
+                            <div class="user-avatar">U</div>
+                            <div class="user-name">User</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-menu">
+                        <h3 class="menu-title">Menu</h3>
+                        <ul class="menu-items">
+                            <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('chat-page'); toggleMobileSidebar();"><span class="menu-icon">💬</span><span class="menu-text">College Search</span></a></li>
+                            <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('saved-colleges-page'); toggleMobileSidebar();"><span class="menu-icon">⭐</span><span class="menu-text">Saved Colleges</span></a></li>
+                            <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('applications-page'); toggleMobileSidebar();"><span class="menu-icon">📝</span><span class="menu-text">Applications</span></a></li>
+                            <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('financial-aid-page'); toggleMobileSidebar();"><span class="menu-icon">💰</span><span class="menu-text">Financial Aid</span></a></li>
+                            <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('settings-page'); toggleMobileSidebar();"><span class="menu-icon">⚙️</span><span class="menu-text">Settings</span></a></li>
+                            <li class="menu-item"><a href="#" class="menu-link" onclick="logout(); toggleMobileSidebar();"><span class="menu-icon">🚪</span><span class="menu-text">Logout</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="chat-main">
+                    <div class="chat-header">
+                        <button class="mobile-back-btn" onclick="goBack()">← Back</button>
+                        <button class="mobile-menu-toggle" id="menu-toggle" onclick="toggleMobileSidebar()">☰</button>
+                        <div class="chat-title-wrap">
+                            <div class="chat-title">College Search Assistant</div>
+                            <div class="chat-status chat-status-ready" id="chat-status">Ready</div>
+                        </div>
+                        <div class="chat-actions">
+                            <button type="button" class="chat-action" id="clear-chat-btn" title="Clear current chat view">Clear</button>
+                            <button type="button" class="chat-action" id="scroll-chat-btn" title="Jump to latest message">Latest</button>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message bot-message">
+                            <div class="message-avatar bot-avatar">AI</div>
+                            <div class="message-content">
+                                <div class="message-bubble">
+                                    Hi there! I'm your College Search Assistant. I can help you find colleges that match your preferences. Tell me about your academic interests, preferred locations, budget, and any other factors that are important to you!
+                                </div>
+                                <div class="message-time">10:30 AM</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input">
+                        <div class="chat-suggestions" id="chat-suggestions">
+                            <button type="button" class="suggestion-chip" data-suggestion="Suggest top engineering colleges in India with strong placements.">Top Engineering Colleges</button>
+                            <button type="button" class="suggestion-chip" data-suggestion="Find affordable colleges for computer science with annual tuition under 1,00,000 Rs.">Budget CS Options</button>
+                            <button type="button" class="suggestion-chip" data-suggestion="Compare IIT Bombay, IIT Delhi, and IIT Madras for computer science.">Compare IITs</button>
+                        </div>
+                        <form class="input-form" id="message-form">
+                            <textarea class="input-field" id="message-input" placeholder="Ask about colleges, scholarships, or admission requirements..." rows="1"></textarea>
+                            <button type="submit" class="send-btn">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Saved Colleges Page -->
+    <div id="saved-colleges-page" class="page" style="display: none;">
+        <div class="chat-container">
+            <div class="chat-sidebar-overlay" onclick="toggleMobileSidebar()"></div>
+            <div class="chat-sidebar">
+                <div class="sidebar-header">
+                    <div class="user-info">
+                        <div class="user-avatar">U</div>
+                        <div class="user-name">User</div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <h3 class="menu-title">Menu</h3>
+                    <ul class="menu-items">
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('chat-page'); toggleMobileSidebar();"><span class="menu-icon">💬</span><span class="menu-text">College Search</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('saved-colleges-page'); toggleMobileSidebar();"><span class="menu-icon">⭐</span><span class="menu-text">Saved Colleges</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('applications-page'); toggleMobileSidebar();"><span class="menu-icon">📝</span><span class="menu-text">Applications</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('financial-aid-page'); toggleMobileSidebar();"><span class="menu-icon">💰</span><span class="menu-text">Financial Aid</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('settings-page'); toggleMobileSidebar();"><span class="menu-icon">⚙️</span><span class="menu-text">Settings</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="logout(); toggleMobileSidebar();"><span class="menu-icon">🚪</span><span class="menu-text">Logout</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="chat-main">
+                <div class="chat-header">
+                    <button class="mobile-back-btn" onclick="goBack()">← Back</button>
+                    <button class="mobile-menu-toggle" onclick="toggleMobileSidebar()">☰</button>
+                    <div class="chat-title">My Saved Colleges</div>
+                </div>
+                <div class="panel-scroll">
+                    <input type="text" placeholder="Search saved colleges..." class="panel-search-input">
+                    <div class="panel-grid">
+                        <div class="panel-card">
+                            <h3 class="panel-card-title">IIT Bombay</h3>
+                            <p class="panel-card-meta"><strong>Location:</strong> Mumbai, Maharashtra</p>
+                            <p class="panel-card-meta"><strong>Stream:</strong> Engineering</p>
+                            <p class="panel-card-meta"><strong>Saved on:</strong> April 1, 2026</p>
+                            <div class="panel-card-actions">
+                                <button class="btn btn-primary btn-compact">View Details</button>
+                                <button class="btn btn-outline btn-compact">Remove</button>
+                            </div>
+                        </div>
+                        <div class="panel-card">
+                            <h3 class="panel-card-title">University of Delhi</h3>
+                            <p class="panel-card-meta"><strong>Location:</strong> New Delhi, India</p>
+                            <p class="panel-card-meta"><strong>Stream:</strong> Humanities/Sciences</p>
+                            <p class="panel-card-meta"><strong>Saved on:</strong> March 30, 2026</p>
+                            <div class="panel-card-actions">
+                                <button class="btn btn-primary btn-compact">View Details</button>
+                                <button class="btn btn-outline btn-compact">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <h4 class="panel-subtitle">Compare or Get Help</h4>
+                    <div class="chat-container mini-chat">
+                        <div class="chat-messages" id="saved-chat-messages">
+                            <div class="message bot-message">
+                                <div class="message-avatar bot-avatar">AI</div>
+                                <div class="message-content"><div class="message-bubble">Ask me to compare, analyze, or suggest similar schools!</div></div>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <form id="saved-message-form" class="input-form">
+                                <textarea id="saved-message-input" class="input-field" placeholder="Type a question..." rows="1"></textarea>
+                                <button type="submit" class="send-btn">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Applications Page -->
+    <div id="applications-page" class="page" style="display: none;">
+        <div class="chat-container">
+            <div class="chat-sidebar-overlay" onclick="toggleMobileSidebar()"></div>
+            <div class="chat-sidebar">
+                <div class="sidebar-header">
+                    <div class="user-info">
+                        <div class="user-avatar">U</div>
+                        <div class="user-name">User</div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <h3 class="menu-title">Menu</h3>
+                    <ul class="menu-items">
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('chat-page'); toggleMobileSidebar();"><span class="menu-icon">💬</span><span class="menu-text">College Search</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('saved-colleges-page'); toggleMobileSidebar();"><span class="menu-icon">⭐</span><span class="menu-text">Saved Colleges</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('applications-page'); toggleMobileSidebar();"><span class="menu-icon">📝</span><span class="menu-text">Applications</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('financial-aid-page'); toggleMobileSidebar();"><span class="menu-icon">💰</span><span class="menu-text">Financial Aid</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('settings-page'); toggleMobileSidebar();"><span class="menu-icon">⚙️</span><span class="menu-text">Settings</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="logout(); toggleMobileSidebar();"><span class="menu-icon">🚪</span><span class="menu-text">Logout</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="chat-main">
+                <div class="chat-header">
+                    <button class="mobile-back-btn" onclick="goBack()">← Back</button>
+                    <button class="mobile-menu-toggle" onclick="toggleMobileSidebar()">☰</button>
+                    <div class="chat-title">My Applications</div>
+                </div>
+                <div class="panel-scroll">
+                    <form id="application-form" class="panel-form-card">
+                        <h3 class="panel-form-title">Add New Application</h3>
+                        <input id="application-college-name" type="text" placeholder="College name" class="panel-input" required>
+                        <div class="panel-row-wrap">
+                            <select id="application-status" class="panel-input panel-input-min">
+                                <option value="pending">Pending</option>
+                                <option value="submitted">Submitted</option>
+                                <option value="accepted">Accepted</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                            <input id="application-deadline" type="date" class="panel-input panel-input-min">
+                        </div>
+                        <textarea id="application-notes" placeholder="Notes" rows="2" class="panel-input"></textarea>
+                        <button type="submit" class="btn btn-primary panel-submit-btn">Add Application</button>
+                    </form>
+                    <div id="applications-list" class="panel-grid">
+                        <p class="panel-empty-text">No applications yet. Add your first one above.</p>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <h4 class="panel-subtitle">Application Help</h4>
+                    <div class="chat-container mini-chat">
+                        <div class="chat-messages" id="applications-chat-messages">
+                            <div class="message bot-message">
+                                <div class="message-avatar bot-avatar">AI</div>
+                                <div class="message-content"><div class="message-bubble">Ask about deadlines, essays, documents, or tips to strengthen your applications!</div></div>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <form id="applications-message-form" class="input-form">
+                                <textarea id="applications-message-input" class="input-field" placeholder="Type a question..." rows="1"></textarea>
+                                <button type="submit" class="send-btn">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Financial Aid Page -->
+    <div id="financial-aid-page" class="page" style="display: none;">
+        <div class="chat-container">
+            <div class="chat-sidebar-overlay" onclick="toggleMobileSidebar()"></div>
+            <div class="chat-sidebar">
+                <div class="sidebar-header">
+                    <div class="user-info">
+                        <div class="user-avatar">U</div>
+                        <div class="user-name">User</div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <h3 class="menu-title">Menu</h3>
+                    <ul class="menu-items">
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('chat-page'); toggleMobileSidebar();"><span class="menu-icon">💬</span><span class="menu-text">College Search</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('saved-colleges-page'); toggleMobileSidebar();"><span class="menu-icon">⭐</span><span class="menu-text">Saved Colleges</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('applications-page'); toggleMobileSidebar();"><span class="menu-icon">📝</span><span class="menu-text">Applications</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('financial-aid-page'); toggleMobileSidebar();"><span class="menu-icon">💰</span><span class="menu-text">Financial Aid</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('settings-page'); toggleMobileSidebar();"><span class="menu-icon">⚙️</span><span class="menu-text">Settings</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="logout(); toggleMobileSidebar();"><span class="menu-icon">🚪</span><span class="menu-text">Logout</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="chat-main">
+                <div class="chat-header">
+                    <button class="mobile-back-btn" onclick="goBack()">← Back</button>
+                    <button class="mobile-menu-toggle" onclick="toggleMobileSidebar()">☰</button>
+                    <div class="chat-title">Financial Aid & Scholarships</div>
+                </div>
+                <div class="panel-scroll">
+                    <div class="panel-row-wrap panel-row-bottom">
+                        <input type="text" placeholder="Search scholarships..." class="panel-input panel-input-grow panel-input-min">
+                        <select class="panel-input panel-select-fit">
+                            <option>All Types</option>
+                            <option>Merit-Based</option>
+                            <option>Need-Based</option>
+                            <option>Grants</option>
+                            <option>Loans</option>
+                        </select>
+                    </div>
+                    <div class="panel-grid">
+                        <div class="panel-card">
+                            <h3 class="panel-card-title">National Scholarship Program</h3>
+                            <p class="panel-card-meta"><strong>Amount:</strong> $5,000/year</p>
+                            <p class="panel-card-meta"><strong>Type:</strong> Merit-Based</p>
+                            <p class="panel-card-meta"><strong>Deadline:</strong> May 31, 2026</p>
+                            <p class="panel-card-meta"><strong>Requirements:</strong> Minimum 3.8 GPA, Essay required</p>
+                            <button class="btn btn-primary btn-compact panel-action-top">Apply Now</button>
+                        </div>
+                        <div class="panel-card">
+                            <h3 class="panel-card-title">State Aid Fund</h3>
+                            <p class="panel-card-meta"><strong>Amount:</strong> Up to $3,000/year</p>
+                            <p class="panel-card-meta"><strong>Type:</strong> Need-Based</p>
+                            <p class="panel-card-meta"><strong>Deadline:</strong> June 15, 2026</p>
+                            <p class="panel-card-meta"><strong>Requirements:</strong> Financial aid form, proof of residency</p>
+                            <button class="btn btn-primary btn-compact panel-action-top">Apply Now</button>
+                        </div>
+                        <div class="panel-card">
+                            <h3 class="panel-card-title">Women in STEM Scholarship</h3>
+                            <p class="panel-card-meta"><strong>Amount:</strong> $7,500/year</p>
+                            <p class="panel-card-meta"><strong>Type:</strong> Merit + Career Path</p>
+                            <p class="panel-card-meta"><strong>Deadline:</strong> April 30, 2026</p>
+                            <p class="panel-card-meta"><strong>Requirements:</strong> Female student, STEM major</p>
+                            <button class="btn btn-primary btn-compact panel-action-top">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <h4 class="panel-subtitle">Financial Aid Questions</h4>
+                    <div class="chat-container mini-chat">
+                        <div class="chat-messages" id="financial-aid-chat-messages">
+                            <div class="message bot-message">
+                                <div class="message-avatar bot-avatar">AI</div>
+                                <div class="message-content"><div class="message-bubble">Ask about eligibility, deadlines, documents needed, or FAFSA tips!</div></div>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <form id="financial-aid-message-form" class="input-form">
+                                <textarea id="financial-aid-message-input" class="input-field" placeholder="Type a question..." rows="1"></textarea>
+                                <button type="submit" class="send-btn">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Page -->
+    <div id="settings-page" class="page" style="display: none;">
+        <div class="chat-container">
+            <div class="chat-sidebar-overlay" onclick="toggleMobileSidebar()"></div>
+            <div class="chat-sidebar">
+                <div class="sidebar-header">
+                    <div class="user-info">
+                        <div class="user-avatar">U</div>
+                        <div class="user-name">User</div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <h3 class="menu-title">Menu</h3>
+                    <ul class="menu-items">
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('chat-page'); toggleMobileSidebar();"><span class="menu-icon">💬</span><span class="menu-text">College Search</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('saved-colleges-page'); toggleMobileSidebar();"><span class="menu-icon">⭐</span><span class="menu-text">Saved Colleges</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('applications-page'); toggleMobileSidebar();"><span class="menu-icon">📝</span><span class="menu-text">Applications</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('financial-aid-page'); toggleMobileSidebar();"><span class="menu-icon">💰</span><span class="menu-text">Financial Aid</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="showPage('settings-page'); toggleMobileSidebar();"><span class="menu-icon">⚙️</span><span class="menu-text">Settings</span></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" onclick="logout(); toggleMobileSidebar();"><span class="menu-icon">🚪</span><span class="menu-text">Logout</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="chat-main">
+                <div class="chat-header">
+                    <button class="mobile-back-btn" onclick="goBack()">← Back</button>
+                    <button class="mobile-menu-toggle" onclick="toggleMobileSidebar()">☰</button>
+                    <div class="chat-title">Settings & Account</div>
+                </div>
+                <div class="panel-scroll">
+                    <!-- Profile Section -->
+                    <div class="settings-card">
+                        <h3 class="settings-card-title">Profile Information</h3>
+                        <form id="profile-form" class="settings-form">
+                            <div>
+                                <label class="settings-label">Full Name</label>
+                                <input id="settings-full-name" type="text" value="" class="settings-input" required>
+                            </div>
+                            <div>
+                                <label class="settings-label">Email</label>
+                                <input id="settings-email" type="email" value="" class="settings-input" readonly>
+                            </div>
+                            <div>
+                                <label class="settings-label">Phone</label>
+                                <input id="settings-phone" type="tel" value="" class="settings-input">
+                            </div>
+                            <button type="submit" class="btn btn-primary settings-btn-inline">Save Profile</button>
+                        </form>
+                    </div>
+
+                    <!-- Notification Preferences -->
+                    <div class="settings-card">
+                        <h3 class="settings-card-title">Notification Preferences</h3>
+                        <form id="preferences-form" class="settings-form">
+                            <label class="settings-check-label"><input id="notify-deadlines" type="checkbox" checked> <span class="settings-check-text">Email reminders for application deadlines</span></label>
+                            <label class="settings-check-label"><input id="notify-weekly" type="checkbox" checked> <span class="settings-check-text">Weekly college recommendations</span></label>
+                            <label class="settings-check-label"><input id="notify-marketing" type="checkbox"> <span class="settings-check-text">Marketing emails and updates</span></label>
+                            <label class="settings-check-label"><input id="notify-scholarships" type="checkbox" checked> <span class="settings-check-text">Scholarship opportunity alerts</span></label>
+                            <button type="submit" class="btn btn-primary settings-btn-inline settings-btn-top-gap">Save Preferences</button>
+                        </form>
+                    </div>
+
+                    <!-- Security Section -->
+                    <div class="settings-card">
+                        <h3 class="settings-card-title">Security</h3>
+                        <div class="settings-actions-column">
+                            <button class="btn btn-outline settings-btn-inline">Change Password</button>
+                            <button class="btn btn-outline settings-btn-inline">Enable 2-Factor Authentication</button>
+                        </div>
+                    </div>
+
+                    <!-- Account Management -->
+                    <div class="settings-card">
+                        <h3 class="settings-card-title">Account Management</h3>
+                        <div class="settings-actions-row">
+                            <button class="btn btn-outline settings-btn-inline">Download Data</button>
+                            <button class="btn btn-outline settings-btn-inline settings-danger-btn">Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <h4 class="panel-subtitle">Settings Help</h4>
+                    <div class="chat-container mini-chat">
+                        <div class="chat-messages" id="settings-chat-messages">
+                            <div class="message bot-message">
+                                <div class="message-avatar bot-avatar">AI</div>
+                                <div class="message-content"><div class="message-bubble">Ask me about profile changes, notification settings, or security options!</div></div>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <form id="settings-message-form" class="input-form">
+                                <textarea id="settings-message-input" class="input-field" placeholder="Type a question..." rows="1"></textarea>
+                                <button type="submit" class="send-btn">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.COLLEGEFINDR_API_BASE_URL = "https://collegefindr-backend.onrender.com";
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
