@@ -5,11 +5,14 @@ const runtimeApiBaseUrl = String(window.COLLEGEFINDR_API_BASE_URL || "")
     .trim()
     .replace(/\.$/, "")
     .replace(/\/+$/, "");
-const runtimeClientKey = String(window.COLLEGEFINDR_CLIENT_KEY || "").trim();
 const isFileProtocol = window.location.protocol === "file:";
 const isLocalDev = ["localhost", "127.0.0.1"].includes(window.location.hostname);
 const defaultApiBaseUrl = (isLocalDev || isFileProtocol) ? "http://127.0.0.1:5000" : "";
 const apiBaseUrl = runtimeApiBaseUrl || defaultApiBaseUrl;
+const CHAT_MESSAGE_MAX_LENGTH = Math.max(Number(window.COLLEGEFINDR_CHAT_MAX_LENGTH || 500) || 500, 100);
+const DEFAULT_REQUEST_TIMEOUT_MS = Math.max(Number(window.COLLEGEFINDR_REQUEST_TIMEOUT_MS || 15000) || 15000, 1000);
+const CHAT_REQUEST_TIMEOUT_MS = Math.max(Number(window.COLLEGEFINDR_CHAT_TIMEOUT_MS || 35000) || 35000, DEFAULT_REQUEST_TIMEOUT_MS);
+const BACKEND_WARMUP_TIMEOUT_MS = Math.max(Number(window.COLLEGEFINDR_WARMUP_TIMEOUT_MS || 20000) || 20000, DEFAULT_REQUEST_TIMEOUT_MS);
 
 const API = {
     ping: `${apiBaseUrl}/ping`,
@@ -71,6 +74,7 @@ if (!authToken) {
 
 let navigationHistory = [];
 const MAX_HISTORY_DEPTH = 8;
+const defaultMessageMarkupByContainer = {};
 try {
     const parsedHistory = JSON.parse(localStorage.getItem("collegefindr_page_history") || "[]");
     if (Array.isArray(parsedHistory)) {
@@ -102,7 +106,46 @@ function goBack() {
 
 window.goBack = goBack;
 
+function getUserIdentity(user) {
+    if (!user) return "";
+    return String(user.id || user.email || "").trim().toLowerCase();
+}
+
+function clearStoredMessages() {
+    Object.keys(MESSAGE_STORAGE_KEYS).forEach((containerId) => {
+        localStorage.removeItem(MESSAGE_STORAGE_KEYS[containerId]);
+    });
+}
+
+function cacheDefaultMessageMarkup() {
+    Object.keys(MESSAGE_STORAGE_KEYS).forEach((containerId) => {
+        const container = document.getElementById(containerId);
+        if (container && !(containerId in defaultMessageMarkupByContainer)) {
+            defaultMessageMarkupByContainer[containerId] = container.innerHTML;
+        }
+    });
+}
+
+function resetMessageContainer(containerId, options = {}) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = defaultMessageMarkupByContainer[containerId] || "";
+
+    if (options.persist) {
+        saveMessagesToStorage(containerId);
+    }
+}
+
+function resetAllMessageContainers(options = {}) {
+    Object.keys(MESSAGE_STORAGE_KEYS).forEach((containerId) => resetMessageContainer(containerId, options));
+}
+
 function setAuthState(token, user) {
+    const previousIdentity = getUserIdentity(currentUser);
+    const nextIdentity = getUserIdentity(user);
+    const shouldResetUserScopedState = previousIdentity !== nextIdentity;
+
     authToken = token || "";
     currentUser = user || null;
 
@@ -118,13 +161,12 @@ function setAuthState(token, user) {
         localStorage.removeItem("collegefindr_user");
     }
 
-    // Clear old user data when switching users (prevents showing old data from previous login)
-    if (user) {
-        Object.keys(MESSAGE_STORAGE_KEYS).forEach((key) => {
-            localStorage.removeItem(MESSAGE_STORAGE_KEYS[key]);
-        });
+    // Reset cached UI state only when the authenticated identity actually changes.
+    if (shouldResetUserScopedState) {
+        clearStoredMessages();
         navigationHistory = [];
         localStorage.removeItem("collegefindr_page_history");
+        resetAllMessageContainers();
     }
 
     renderCurrentUser();
@@ -160,7 +202,7 @@ async function warmUpBackend(force = false, options = {}) {
 
     try {
         await apiJson(API.ping || API.health, {
-            timeoutMs: 10000,
+            timeoutMs: BACKEND_WARMUP_TIMEOUT_MS,
             retries: 3,
             retryDelayMs: 800,
             retryOnStatuses: [502, 503, 504, 522, 524],
@@ -174,7 +216,7 @@ async function warmUpBackend(force = false, options = {}) {
 }
 
 async function apiJson(url, options = {}) {
-    const timeoutMs = Number(options.timeoutMs ?? 10000);
+    const timeoutMs = Number(options.timeoutMs ?? DEFAULT_REQUEST_TIMEOUT_MS);
     const retries = Number(options.retries ?? 3);
     const retryDelayMs = Number(options.retryDelayMs ?? 800);
     const retryOnStatuses = Array.isArray(options.retryOnStatuses)
@@ -209,7 +251,6 @@ async function apiJson(url, options = {}) {
         try {
             const headers = {
                 Accept: "application/json",
-                "X-Requested-With": "CollegeFindrWeb",
                 ...(options.auth ? getAuthHeaders() : {}),
                 ...(options.headers || {}),
             };
@@ -277,8 +318,8 @@ async function apiJson(url, options = {}) {
                 const apiTarget = apiBaseUrl || window.location.origin;
                 const originInfo = isFileProtocol ? "file:// (origin: null)" : window.location.origin;
                 const networkError = new Error(
-                    `Network/CORS error. Could not reach API at ${apiTarget} from origin ${originInfo}. ` +
-                    "Allowed origins include: https://mouleesh-user.github.io, https://moulesh-user.github.io"
+                    `Could not reach the backend at ${apiTarget} from origin ${originInfo}. ` +
+                    "The service may be asleep, unavailable, or blocked by CORS."
                 );
                 networkError.status = 0;
                 throw networkError;
@@ -447,7 +488,7 @@ function saveMessagesToStorage(containerId) {
         const messages = Array.from(container.querySelectorAll(".message")).map((msg) => ({
             sender: msg.classList.contains("bot-message") ? "bot" : "user",
             text: msg.querySelector(".message-bubble")?.textContent || "",
-            time: msg.querySelector(".message-time")?.textContent || "",
+            timeText: msg.querySelector(".message-time")?.textContent || "",
         }));
 
         localStorage.setItem(storageKey, JSON.stringify(messages));
@@ -475,7 +516,7 @@ function addMessage(messagesContainer, sender, text, options = {}) {
 
     const timeEl = document.createElement("div");
     timeEl.className = "message-time";
-    timeEl.textContent = formatDisplayTime(options.timestamp || null);
+    timeEl.textContent = String(options.timeText || "").trim() || formatDisplayTime(options.timestamp || null);
 
     contentEl.appendChild(bubbleEl);
     contentEl.appendChild(timeEl);
@@ -517,12 +558,10 @@ function bindChatPageControls() {
     if (clearBtn && mainMessages && clearBtn.dataset.bound !== "1") {
         clearBtn.dataset.bound = "1";
         clearBtn.addEventListener("click", () => {
-            const shouldClear = window.confirm("Clear the current chat view?");
+            const shouldClear = window.confirm("Clear the current chat view on this device?");
             if (!shouldClear) return;
 
-            mainMessages.innerHTML = "";
-            addMessage(mainMessages, "bot", getDefaultChatWelcomeMessage(), { persist: false });
-            saveMessagesToStorage("chat-messages");
+            resetMessageContainer("chat-messages", { persist: true });
             updateChatStatus("ready");
         });
     }
@@ -584,7 +623,10 @@ function loadMessagesFromStorage(containerId) {
         if (!container) return;
 
         container.innerHTML = "";
-        parsed.forEach((msg) => addMessage(container, msg.sender === "bot" ? "bot" : "user", msg.text, { persist: false }));
+        parsed.forEach((msg) => addMessage(container, msg.sender === "bot" ? "bot" : "user", msg.text, {
+            persist: false,
+            timeText: msg.timeText || msg.time || "",
+        }));
     } catch (error) {
         console.warn("Failed to load messages", error);
     }
@@ -622,9 +664,7 @@ async function syncMessagesFromServer(containerId) {
 
 async function syncAllChatContainers() {
     const ids = Object.keys(MESSAGE_STORAGE_KEYS);
-    for (const id of ids) {
-        await syncMessagesFromServer(id);
-    }
+    await Promise.all(ids.map((id) => syncMessagesFromServer(id)));
 }
 
 async function fetchChatReply(userMessage, context, options = {}) {
@@ -636,11 +676,10 @@ async function fetchChatReply(userMessage, context, options = {}) {
     const data = await apiJson(API.chat, {
         method: "POST",
         auth: Boolean(authToken),
-        timeoutMs: 10000,
+        timeoutMs: CHAT_REQUEST_TIMEOUT_MS,
         retries: 3,
         retryDelayMs: 800,
         retryOnStatuses: [502, 503, 504, 522, 524],
-        headers: runtimeClientKey ? { "X-CLIENT-KEY": runtimeClientKey } : {},
         onWake: options.onWake,
         onWakeResolved: options.onWakeResolved,
         body: {
@@ -685,8 +724,8 @@ async function handleChatSubmit(formId, inputId, messagesId) {
             return;
         }
 
-        if (userMessage.length > 5000) {
-            showErrorNotification("Message too long (max 5000 characters)");
+        if (userMessage.length > CHAT_MESSAGE_MAX_LENGTH) {
+            showErrorNotification(`Message too long (max ${CHAT_MESSAGE_MAX_LENGTH} characters)`);
             if (messagesId === "chat-messages") updateChatStatus("error");
             return;
         }
@@ -1323,6 +1362,7 @@ function bindApplicationForm() {
 
 document.addEventListener("DOMContentLoaded", async () => {
     configureMarkdownRenderer();
+    cacheDefaultMessageMarkup();
     initializeMobileSidebar();
     preventPlaceholderLinkJumps();
     attachLogoutHandlers();
